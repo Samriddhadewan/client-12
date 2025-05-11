@@ -10,6 +10,8 @@ import UserProfile from "../Components/Dashboard/UserProfile/UserProfile";
 import AdminRoutes from "./AdminRoutes";
 import AdminProfile from "../Components/Dashboard/AdminProfile/AdminProfile";
 import AddCamp from "../Components/Dashboard/AddCamp/AddCamp";
+import ManageCamp from "../Components/Dashboard/ManageCamp/ManageCamp";
+import UpdateCamp from "../Components/Dashboard/UpdateCamp/UpdateCamp";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +53,15 @@ const router = createBrowserRouter([
       {
         path:"addCamp",
         element:<AdminRoutes> <AddCamp></AddCamp> </AdminRoutes>,
+      },
+      {
+        path:"manageCamp",
+        element:<AdminRoutes> <ManageCamp></ManageCamp> </AdminRoutes>,
+      },
+      {
+        path:"updateCamp/:id",
+        element:<AdminRoutes> <UpdateCamp></UpdateCamp> </AdminRoutes>,
+        loader: ({params}) => fetch(`http://localhost:5000/camps/${params.id}`)
       },
     ]
   }

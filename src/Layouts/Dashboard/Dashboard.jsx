@@ -27,7 +27,7 @@ const Dashboard = () => {
                     <NavLink to="/dashboard/addCamp">Add A Camp</NavLink>
                   </li>
                   <li className="text-white text-lg font-semibold">
-                    <NavLink to="/dashboard/manageCamps">Manage Camps</NavLink>
+                    <NavLink to="/dashboard/manageCamp">Manage Camps</NavLink>
                   </li>
                   <li className="text-white text-lg font-semibold">
                     <NavLink to="/dashboard/manageRegisteredCamps">
