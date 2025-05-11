@@ -46,7 +46,7 @@ const ManageCamp = () => {
               <th></th>
               <th>Name</th>
               <th>Fees</th>
-              <th>Dr.</th>
+              <th>Health Care Professional Name</th>
               <th>Edit</th>
               <th>delete</th>
             </tr>
