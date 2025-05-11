@@ -4,6 +4,12 @@ import MainLayout from "../Layouts/MainLayout/MainLayout";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import Dashboard from "../Layouts/Dashboard/Dashboard";
+import PrivateRoute from "../Routes/PrivateRoute"
+import UserProfile from "../Components/Dashboard/UserProfile/UserProfile";
+import AdminRoutes from "./AdminRoutes";
+import AdminProfile from "../Components/Dashboard/AdminProfile/AdminProfile";
+import AddCamp from "../Components/Dashboard/AddCamp/AddCamp";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,6 +29,31 @@ const router = createBrowserRouter([
         },
     ],
   },
+  {
+    path:"dashboard",
+    element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    children:[
+      // user links 
+      {
+        path:"userProfile",
+        element:<PrivateRoute><UserProfile></UserProfile> </PrivateRoute>,
+      },
+
+
+
+
+
+      // admin links 
+      {
+        path:"adminProfile",
+        element:<AdminRoutes> <AdminProfile></AdminProfile> </AdminRoutes>,
+      },
+      {
+        path:"addCamp",
+        element:<AdminRoutes> <AddCamp></AddCamp> </AdminRoutes>,
+      },
+    ]
+  }
 ]);
 
 export default router;

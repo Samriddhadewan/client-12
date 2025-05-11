@@ -9,12 +9,14 @@ import {
   signOut,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { GoogleAuthProvider } from "firebase/auth/web-extension";
+import { GoogleAuthProvider } from "firebase/auth";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
+  const axiosPublic = useAxiosPublic();
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -56,11 +58,24 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         setUser(currentUser);
         console.log("UserLogin -->", currentUser);
+        const user = {
+          email: currentUser?.email,
+        }
+        if(currentUser){
+          axiosPublic.post("/jwt", user)
+          .then(res=>{
+            if(res.data.token){
+              localStorage.setItem("access-token", res.data.token);
+              setLoading(false);
+            }
+          })
+        }
       } else {
         setUser(null);
+        localStorage.removeItem("access-token");
+        setLoading(false);
         console.log("UserLogout -->", currentUser);
       }
-      setLoading(false);
     });
     return () => {
       unSubscribe();

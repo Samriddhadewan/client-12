@@ -1,20 +1,28 @@
-import { Link, useNavigate } from "react-router-dom"
-import GoogleLogin from "../../Components/GoogleLogin/GoogleLogin"
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import GoogleLogin from "../../Components/GoogleLogin/GoogleLogin";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import useAdmin from "../../Hooks/useAdmin";
 
 const Login = () => {
-  const navigate = useNavigate()
-  const {HandleUserLogin} = useAuth()
-    const { register, handleSubmit, formState: { errors } } = useForm();
-
-    const onSubmit = (data) => {
+  const location = useLocation();
+  const [isAdmin] = useAdmin();
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || "/";
+  const { HandleUserLogin } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  
+  const onSubmit = (data) => {
     HandleUserLogin(data.email, data.password)
-      .then((result) => {
-        console.log("from the loginPage", result.user);
-        toast.success("User logged in successfully");
-        navigate("/");
+    .then((result) => {
+      console.log("from the loginPage", result.user);
+      toast.success("User logged in successfully");
+      navigate("/");
         // Handle successful login here
       })
       .catch((error) => {
@@ -23,14 +31,11 @@ const Login = () => {
       });
   };
 
-
-
   return (
-     <div>
+    <div>
       <div className="min-h-[80vh] flex items-center justify-center">
         <div className="card bg-base-100 w-full max-w-xl p-14 shrink-0 shadow-2xl">
-          <form onSubmit={handleSubmit(onSubmit)}
-           className="">
+          <form onSubmit={handleSubmit(onSubmit)} className="">
             <h1 className="text-4xl text-center font-bold">Login Now</h1>
             <fieldset className="fieldset">
               <label className="fieldset-label">Email</label>
@@ -70,7 +75,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
