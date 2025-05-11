@@ -5,8 +5,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddCamp = () => {
+  const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
   const [startDate, setStartDate] = useState(new Date());
   const {
@@ -30,6 +32,7 @@ const AddCamp = () => {
         toast.success("Camp added successfully");
         reset();
         setStartDate(new Date());
+        navigate("/dashboard/manageCamp");
       }
     })
   };

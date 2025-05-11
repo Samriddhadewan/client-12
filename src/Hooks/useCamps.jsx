@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const useCamps = () => {
     const axiosSecure = useAxiosSecure();
-    const {data:camps=[]}=  useQuery({
+    const {refetch,data:camps=[]}=  useQuery({
         queryKey: ['camps'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/camps`);
@@ -11,7 +11,7 @@ const useCamps = () => {
         }
         
     })
-    return [camps];
+    return [camps,refetch];
 }
 
 export default useCamps
