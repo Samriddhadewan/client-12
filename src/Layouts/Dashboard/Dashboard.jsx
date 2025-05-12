@@ -30,7 +30,7 @@ const Dashboard = () => {
                     <NavLink to="/dashboard/manageCamp">Manage Camps</NavLink>
                   </li>
                   <li className="text-white text-lg font-semibold">
-                    <NavLink to="/dashboard/manageRegisteredCamps">
+                    <NavLink to="/dashboard/manageRequestCamp">
                       Manage Registered Camps
 
                     </NavLink>
@@ -47,7 +47,7 @@ const Dashboard = () => {
                     <NavLink to="/dashboard/analytics">Analytics</NavLink>
                   </li>
                   <li className="text-white text-lg font-semibold">
-                    <NavLink to="/dashboard/camps">Registered Camps</NavLink>
+                    <NavLink to="/dashboard/manageRequests">Registered Camps</NavLink>
                   </li>
                   <li className="text-white text-lg font-semibold">
                     <NavLink to="/dashboard/paymentHistory">

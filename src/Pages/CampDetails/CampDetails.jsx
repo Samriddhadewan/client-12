@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const CampDetails = () => {
+  const data = useLoaderData();
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const [participantCount, setParticipantCount] = useState(data.participant_count);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     age: "",
@@ -20,14 +25,12 @@ const CampDetails = () => {
     }));
   };
 
-  const data = useLoaderData();
   const {
     camp_name,
     date,
     description,
     fees,
     health_care_professional_name,
-    participant_count,
     photo_url,
     time,
     _id,
@@ -44,9 +47,27 @@ const CampDetails = () => {
       health_care_professional_name: health_care_professional_name.trim(),
       participant_name: user?.displayName,
       participant_email: user?.email,
+      payment_status: "unpaid",
+      confirmation_status: "pending",
       ...formData,
     };
-    console.log(registerData);
+
+    axiosSecure.post("/requests", registerData)
+  .then((res) => {
+
+    if (res.data?.insertedId) {
+      toast.success("Successfully registered for the camp!");
+      setParticipantCount((prev) => prev + 1);
+      setShowModal(false);
+    } else {
+      toast.error("Registration failed");
+    }
+  })
+  .catch((error) => {
+    console.error("Error registering for camp:", error);
+    toast.error(error.response?.data?.message || "Something went wrong");
+  });
+
   };
 
   return (
@@ -82,7 +103,7 @@ const CampDetails = () => {
           </p>
           <p>
             <span className="font-semibold">Participants:</span>{" "}
-            {participant_count}
+            {participantCount}
           </p>
         </div>
 

@@ -14,6 +14,9 @@ import ManageCamp from "../Components/Dashboard/ManageCamp/ManageCamp";
 import UpdateCamp from "../Components/Dashboard/UpdateCamp/UpdateCamp";
 import AllCamps from "../Pages/AllCamps/AllCamps";
 import CampDetails from "../Pages/CampDetails/CampDetails";
+import ManageRequest from "../Components/Dashboard/ManageRequest/ManageRequest";
+import ManageRequestCamps from "../Components/Dashboard/ManageRequstCamps/ManageRequestCamps";
+import Payment from "../Components/Dashboard/Payment/Payment";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +54,14 @@ const router = createBrowserRouter([
         path:"userProfile",
         element:<PrivateRoute><UserProfile></UserProfile> </PrivateRoute>,
       },
+      {
+        path:"payment",
+        element:<PrivateRoute><Payment></Payment> </PrivateRoute>,
+      },
+      {
+        path:"manageRequests",
+        element:<PrivateRoute><ManageRequest></ManageRequest> </PrivateRoute>,
+      },
 
 
 
@@ -68,6 +79,10 @@ const router = createBrowserRouter([
       {
         path:"manageCamp",
         element:<AdminRoutes> <ManageCamp></ManageCamp> </AdminRoutes>,
+      },
+      {
+        path:"manageRequestCamp",
+        element:<AdminRoutes> <ManageRequestCamps></ManageRequestCamps> </AdminRoutes>,
       },
       {
         path:"updateCamp/:id",
