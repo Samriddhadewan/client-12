@@ -17,6 +17,9 @@ import CampDetails from "../Pages/CampDetails/CampDetails";
 import ManageRequest from "../Components/Dashboard/ManageRequest/ManageRequest";
 import ManageRequestCamps from "../Components/Dashboard/ManageRequstCamps/ManageRequestCamps";
 import Payment from "../Components/Dashboard/Payment/Payment";
+import PaymentHistory from "../Components/Dashboard/PaymentHistory/PaymentHistory";
+import Feedback from "../Pages/Feedback/Feedback";
+import UserAnalytics from "../Components/Dashboard/UserAnalytics/UserAnalytics";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -55,12 +58,24 @@ const router = createBrowserRouter([
         element:<PrivateRoute><UserProfile></UserProfile> </PrivateRoute>,
       },
       {
+        path:"userAnalytics",
+        element:<PrivateRoute><UserAnalytics></UserAnalytics> </PrivateRoute>,
+      },
+      {
         path:"payment",
         element:<PrivateRoute><Payment></Payment> </PrivateRoute>,
       },
       {
         path:"manageRequests",
         element:<PrivateRoute><ManageRequest></ManageRequest> </PrivateRoute>,
+      },
+      {
+        path:"feedback",
+        element:<PrivateRoute><Feedback></Feedback></PrivateRoute>,
+      },
+      {
+        path:"paymentHistory",
+        element:<PrivateRoute><PaymentHistory></PaymentHistory> </PrivateRoute>,
       },
 
 

@@ -49,6 +49,7 @@ const CampDetails = () => {
       participant_email: user?.email,
       payment_status: "unpaid",
       confirmation_status: "pending",
+      review_status:"not given",
       ...formData,
     };
 

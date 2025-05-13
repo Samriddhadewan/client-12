@@ -72,7 +72,8 @@ const CheckOutFrom = ({request}) => {
           paid_amount: request?.fees,
           participant_email:user?.email,
           participant_name:user?.displayName,
-          camp_name: request?.camp_name
+          camp_name: request?.camp_name,
+          transaction_id:paymentIntent?.id,
         }
         axiosSecure.post("/payment", paymentData)
         .then(res=>{

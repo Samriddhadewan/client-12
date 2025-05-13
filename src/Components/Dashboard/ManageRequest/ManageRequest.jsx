@@ -110,17 +110,17 @@ const ManageRequest = () => {
                   )}
                 </td>
                 <td>
-                  {request?.confirmation_status === "confirmed" ? (
+                  {request?.confirmation_status === "confirmed" && request?.review_status === "not given"  ? (
                     <>
-                      <p>
-                        <p className="text-xl text-green-400">
+                    <Link to="/dashboard/feedback" state={{request}}>
+                    <p className="text-xl text-green-400">
                           <FaMessage></FaMessage>
                         </p>
-                      </p>
+                    </Link>
                     </>
                   ) : (
                     <>
-                      <p className="text-xl text-red-700 ">
+                      <p onClick={()=> toast.error("You are not eligible to give your feedback now!")} className="text-xl text-red-700 ">
                         <LuMessageSquareOff></LuMessageSquareOff>
                       </p>
                     </>
