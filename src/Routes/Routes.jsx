@@ -44,7 +44,7 @@ const router = createBrowserRouter([
         {
             path:"/camp/:id",
             element:<PrivateRoute><CampDetails></CampDetails></PrivateRoute>,
-            loader: ({params}) => fetch(`http://localhost:5000/camps/${params.id}`)
+            loader: ({params}) => fetch(`https://server-12-psi.vercel.app/camps/${params.id}`)
         },
     ],
   },
@@ -102,7 +102,7 @@ const router = createBrowserRouter([
       {
         path:"updateCamp/:id",
         element:<AdminRoutes> <UpdateCamp></UpdateCamp> </AdminRoutes>,
-        loader: ({params}) => fetch(`http://localhost:5000/camps/${params.id}`)
+        loader: ({params}) => fetch(`https://server-12-psi.vercel.app/camps/${params.id}`)
       },
     ]
   }
